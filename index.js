@@ -4,6 +4,13 @@ const gpu = new GPU({
     mode: 'gpu'
 });
 
+
+// Generate Matrices
+const matrices = generateMatrices();
+const A = matrices.A;
+const B = matrices.B;
+
+
 const gpuMatMult = gpu.createKernel(function (A, B) {
         var sum = 0;
         for (var i = 0; i < 512; i++) {
@@ -29,10 +36,6 @@ function cpuMatMult(m, n) {
     return result;
 }
 
-// Generate Matrices
-const matrices = generateMatrices();
-const A = matrices.A;
-const B = matrices.B;
 
 //CPU
 const startCPU = window.performance.now();
